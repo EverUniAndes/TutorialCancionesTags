@@ -44,6 +44,7 @@ class AlbumTestCase(unittest.TestCase):
         consulta = self.session.query(Album).filter(Album.id == 1).first()
         self.assertIsNone(consulta)
 
+
     def test_dar_albumes(self):
         consulta1 = self.coleccion.dar_albumes()
         titulo_album = self.data_factory.name()
