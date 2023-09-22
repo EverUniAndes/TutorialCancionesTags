@@ -14,4 +14,3 @@ jobs:
       env:
         MI_VARIABLE: Hola mundo 2
       run: echo "::set-output name=respuesta::${MI_VARIABLE}"
-    
