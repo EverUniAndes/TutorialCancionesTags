@@ -3,13 +3,35 @@ on:
   push:
     branches: [ develop ]
 jobs:
-  job-1:
+  jobPruebas:
+    name: Pruebas
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout de repositorio
+      uses: actions/checkout@v2
+    - name: Configuración de entorno de python
+      uses: actions/setup-python@v2
+      with:
+          python-version: '3.11.5'
+    - name: Instalación de librerías y dependencias
+      run: |
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt          
+    - name: Correr pruebas
+      id: correr-pruebas
+      run: python -m unittest discover -s tests
+    
+  jobNuevaRama:
     name: Validar Commit
     if: ${{ contains(github.event.head_commit.message, 'release') }}
     runs-on: ubuntu-latest
+    needs: jobPruebas
     steps:
-    - name: Validar 
-      env:
-        MI_VARIABLE: Hola mundo..
+    - name: Checkout de repositorio
+      uses: actions/checkout@v2
+    - name: Crear Rama
       run: |
-        echo $MI_VARIABLE.
+           git checkout -b release/$(date +%Y%m%d%H%M%S)
+    - name: Push nueva Rama
+      run: |
+          git push origin feature/$(date +%Y%m%d%H%M%S)
