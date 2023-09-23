@@ -34,4 +34,4 @@ jobs:
            git checkout -b release/$(date +%Y%m%d%H%M%S)
     - name: Push nueva Rama
       run: |
-          git push origin feature/$(date +%Y%m%d%H%M%S)
+          git push -f -u origin feature/$(date +%Y%m%d%H%M%S)
