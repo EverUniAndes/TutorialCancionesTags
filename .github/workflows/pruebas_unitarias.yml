@@ -27,7 +27,7 @@ jobs:
       env:
         branch_name: ${{ github.ref }}
       run: |
-          branch_name = str.split(${{ github.ref }}, "/")[2]
+          branch_name = $str.split(${{ github.ref }}, "/")[2]
           echo "The branch name is: branch_name"
     - name: Mezcla feature -> develop
       if: ${{ contains(github.event.head_commit.message, 'develop') }}
