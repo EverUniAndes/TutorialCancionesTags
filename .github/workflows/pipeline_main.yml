@@ -1,7 +1,9 @@
 name: Merge Rama Principal
 on:
   push:
-    branches: [ develop ]
+      branches: [ develop ]
+  pull_request:
+      branches: [ develop ]
 jobs:
   jobPruebas:
     name: Pruebas
@@ -29,7 +31,18 @@ jobs:
     steps:
     - name: Checkout de repositorio
       uses: actions/checkout@v2
+      with:
+        ref: develop
     - name: Crear Rama
       run: |
-           git checkout -b release/$(date +%Y%m%d%H%M%S)
+           git checkout -b release
+    - name: Push nueva Rama
+      run: |
+            git push -f -u origin release
+    - name: Mezcla release -> main
+      uses: tukasz/direct-merge-action@master
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        source-branch: release
+        target-branch: main           
 
