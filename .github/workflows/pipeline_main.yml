@@ -38,5 +38,11 @@ jobs:
            git checkout -b release
     - name: Push nueva Rama
       run: |
-            git push -f -u origin release           
+            git push -f -u origin release
+    - name: Mezcla release -> main
+      uses: tukasz/direct-merge-action@master
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        source-branch: release
+        target-branch: main           
 
