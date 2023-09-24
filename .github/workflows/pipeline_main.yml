@@ -35,8 +35,8 @@ jobs:
         ref: develop
     - name: Crear Rama
       run: |
-           git checkout -b release/$(date +%Y%m%d%H%M%S)
+           git checkout -b release
     - name: Push nueva Rama
       run: |
-            git push -f -u origin release/$(date +%Y%m%d%H%M%S)           
+            git push -f -u origin release           
 
