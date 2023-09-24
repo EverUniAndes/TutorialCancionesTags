@@ -27,8 +27,7 @@ jobs:
       env:
         branch_name: ${{ github.ref }}
       run: |
-          echo $(${{ github.ref }}:5:5)
-
+          echo $(expr substr "${{ github.ref }}" 5 5)
     - name: Mezcla feature -> develop
       if: ${{ contains(github.event.head_commit.message, 'develop') }}
       uses: tukasz/direct-merge-action@master
