@@ -30,5 +30,5 @@ jobs:
       uses: tukasz/direct-merge-action@master
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        source-branch: rama1
-        target-branch: rama2 
+        source-branch: develop
+        target-branch: master 
