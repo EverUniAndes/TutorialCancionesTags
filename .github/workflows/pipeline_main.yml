@@ -1,7 +1,9 @@
 name: Merge Rama Principal
 on:
   push:
-    branches: [ develop ]
+      branches: [ develop ]
+  pull_request:
+      branches: [ develop ]
 jobs:
   jobPruebas:
     name: Pruebas
@@ -29,10 +31,12 @@ jobs:
     steps:
     - name: Checkout de repositorio
       uses: actions/checkout@v2
+      with:
+        ref: develop
     - name: Crear Rama
       run: |
            git checkout -b release/$(date +%Y%m%d%H%M%S)
     - name: Push nueva Rama
       run: |
-            git push -f -u origin feature/$(date +%Y%m%d%H%M%S)           
+            git push -f -u origin release/$(date +%Y%m%d%H%M%S)           
 
