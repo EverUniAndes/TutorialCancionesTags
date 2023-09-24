@@ -1,6 +1,5 @@
 name: Pruebas Unitarias
 
-# Controls when the action will run. 
 on:
   push:
     branches: 
@@ -24,7 +23,7 @@ jobs:
     - name: Correr pruebas
       id: correr-pruebas
       run: python -m unittest discover -s tests
-    - name: Mezcla rama1 -> rama2
+    - name: Mezcla feature -> develop
       uses: tukasz/direct-merge-action@master
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
