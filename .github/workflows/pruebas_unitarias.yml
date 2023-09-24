@@ -24,10 +24,8 @@ jobs:
       id: correr-pruebas
       run: python -m unittest discover -s tests
     - name: Get branch name
-      env:
-        branch_name: ${{ github.ref }}
       run: |
-          echo $(expr substr "${{ github.ref }}" 11 5)
+          echo $(${{ github.ref.name }}
     - name: Mezcla feature -> develop
       if: ${{ contains(github.event.head_commit.message, 'develop') }}
       uses: tukasz/direct-merge-action@master
